@@ -23,7 +23,7 @@ def get_settings() -> Settings:
         base_path=os.getenv("EVTOL_INDEX_BASE_PATH", "/Shmape-Homepage/evtol-index").rstrip("/"),
         database_path=Path(os.getenv("EVTOL_INDEX_DATABASE_PATH", "./var/evtol-index.db")),
         alerts_enabled=os.getenv("EVTOL_INDEX_ALERTS_ENABLED", "false").lower() in {"1", "true", "yes"},
-        weight_cap=float(os.getenv("EVTOL_INDEX_WEIGHT_CAP", "0.25")),
+        weight_cap=float(os.getenv("EVTOL_INDEX_WEIGHT_CAP", "0.15")),
         min_float_market_cap_usd=float(os.getenv("EVTOL_INDEX_MIN_FLOAT_MARKET_CAP_USD", "50000000")),
         min_median_daily_value_usd=float(os.getenv("EVTOL_INDEX_MIN_MEDIAN_DAILY_VALUE_USD", "250000")),
         min_price_usd=float(os.getenv("EVTOL_INDEX_MIN_PRICE_USD", "1.0")),

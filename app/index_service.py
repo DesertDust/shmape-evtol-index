@@ -158,8 +158,12 @@ class IndexService:
                 median_daily_value_usd=liquidity,
                 trading_days=len(window),
             )
-            if not eligible_on(day, listing, delisting):
-                eligible, reason = False, "outside public-listing period"
+            if not eligible_on(day, listing, delisting, listing_status=company["listing_status"]):
+                eligible, reason = False, (
+                    "outside defined eVTOL scope"
+                    if company["listing_status"] == "excluded"
+                    else "outside public-listing period"
+                )
             else:
                 result = self.policy.evaluate(item)
                 eligible, reason = result.eligible, result.reason

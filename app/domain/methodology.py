@@ -56,11 +56,19 @@ class OutlierResult:
     label: str
 
 
-def eligible_on(as_of: date, listing_date: date, delisting_date: date | None) -> bool:
+def eligible_on(
+    as_of: date,
+    listing_date: date,
+    delisting_date: date | None,
+    *,
+    listing_status: str = "active",
+) -> bool:
+    if listing_status not in {"active", "historical"}:
+        return False
     return as_of >= listing_date and (delisting_date is None or as_of <= delisting_date)
 
 
-def capped_float_market_cap_weights(rows: list[ConstituentInput], cap: float = 0.25) -> dict[str, float]:
+def capped_float_market_cap_weights(rows: list[ConstituentInput], cap: float = 0.15) -> dict[str, float]:
     positive = {row.symbol: row.float_market_cap_usd for row in rows if row.float_market_cap_usd > 0}
     if not positive:
         return {}

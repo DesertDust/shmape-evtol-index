@@ -18,6 +18,12 @@ spec:
           podSelector:
             matchLabels:
               app.kubernetes.io/name: traefik
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: edge
+          podSelector:
+            matchLabels:
+              app: nginx-proxy-manager
         - podSelector: {}
       ports:
         - protocol: TCP

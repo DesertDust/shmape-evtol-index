@@ -8,7 +8,7 @@ RUN groupadd --gid 10001 app && useradd --uid 10001 --gid 10001 --create-home ap
 WORKDIR /app
 COPY pyproject.toml README.md ./
 COPY app ./app
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir . && chmod -R a+rX /app
 
 USER 10001:10001
 EXPOSE 8000

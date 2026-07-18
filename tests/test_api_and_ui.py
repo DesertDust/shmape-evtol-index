@@ -49,7 +49,7 @@ def test_snapshot_api_has_index_benchmarks_constituents_and_methodology(tmp_path
 
     assert payload["index"]["name"] == "Shmape eVTOL Index"
     assert {row["symbol"] for row in payload["benchmarks"]} == {"^IXIC", "QQQ"}
-    assert "weight_cap" in payload["methodology"]
+    assert payload["methodology"]["weight_cap"] == 0.15
     assert payload["alerts"]["enabled"] is False
 
 

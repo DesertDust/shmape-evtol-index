@@ -37,7 +37,7 @@ Raw weight is:
 
 `company market capitalization × free-float factor`
 
-Raw weights are divided by their total, then any weight over 25% is capped. Excess is redistributed pro rata to uncapped constituents, iteratively, until all weights are at or below 25% and sum to 100%.
+Raw weights are divided by their total, then any weight over 15% is capped. Excess is redistributed pro rata to uncapped constituents, iteratively, until all weights are at or below 15% and sum to 100%.
 
 The cap balances economic size with category breadth. It is deliberately simpler than a multi-tier modified-cap formula so a reader can reproduce it.
 

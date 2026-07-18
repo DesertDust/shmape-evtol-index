@@ -7,7 +7,7 @@ Live route: `https://cloud.tomgiro.com/Shmape-Homepage/evtol-index`
 ## What it does
 
 - Tracks active and historical public companies with material passenger, cargo, or enabling-platform eVTOL exposure.
-- Calculates a quarterly reviewed, free-float-adjusted market-cap basket with a 25% constituent cap.
+- Calculates a quarterly reviewed, free-float-adjusted market-cap basket with a 15% constituent cap.
 - Compares the index and every eligible constituent with NASDAQ Composite (`^IXIC`) and NASDAQ-100 (`QQQ`).
 - Shows normalized performance, cross-sectional z-scores, population standard deviation, and rolling annualized volatility.
 - Serves 15-minute delayed intraday views and adjusted daily history.

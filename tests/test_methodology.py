@@ -50,6 +50,15 @@ def test_point_in_time_membership_respects_listing_and_delisting_dates() -> None
     assert eligible_on(date(2025, 1, 2), date(2024, 2, 1), date(2025, 1, 1)) is False
 
 
+def test_point_in_time_membership_never_admits_scope_exclusions() -> None:
+    assert eligible_on(
+        date(2026, 1, 1),
+        date(2024, 3, 13),
+        None,
+        listing_status="excluded",
+    ) is False
+
+
 def test_index_levels_are_total_return_like_and_start_at_100() -> None:
     levels = normalized_index_levels(
         dates=["2026-01-02", "2026-01-05", "2026-01-06"],
