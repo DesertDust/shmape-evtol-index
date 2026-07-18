@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A transparent global public-equity index for the eVTOL sector.">
+  <title>Shmape eVTOL Index</title>
+  <link rel="stylesheet" href="{{ base_path }}/assets/app.css">
+  <script defer src="{{ base_path }}/assets/app.js"></script>
+</head>
+<body data-base-path="{{ base_path }}">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <nav class="topbar">
+    <a class="brand" href="/Shmape-Homepage/"><span class="brand-mark">S</span><span><strong>Shmape</strong><small>eVTOL Index</small></span></a>
+    <div class="navlinks">
+      <a href="#performance">Performance</a>
+      <a href="#outliers">Outliers</a>
+      <a href="#universe">Companies</a>
+      <a href="#methodology">Methodology</a>
+      <a class="portal-link" href="/Shmape-Homepage/">Shmape OS ↗</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span> Global public eVTOL equities</p>
+        <h1>See the eVTOL market<br><span>move as one system.</span></h1>
+        <p class="lede">A transparent, rules-based view of passenger, cargo, and enabling-platform companies where eVTOL is a material business. Compare the sector with NASDAQ Composite, NASDAQ-100, and every constituent.</p>
+        <div class="hero-meta">
+          <span>SHM-EVTOL</span><span>Base 100</span><span>15-minute delayed</span><span>USD normalized</span>
+        </div>
+      </div>
+      <div class="index-orbit" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="orbit-core"><span>SHM</span><strong>EVTOL</strong></div>
+        <span class="orb orb-a">JOBY</span><span class="orb orb-b">ACHR</span><span class="orb orb-c">EH</span><span class="orb orb-d">EVEX</span>
+      </div>
+    </section>
+
+    <section class="metric-grid" aria-label="Index summary">
+      <article class="metric featured"><div><span>Index level</span><button class="info" data-help="All series are rebased to 100 at the selected period start.">?</button></div><strong id="index-level">—</strong><small id="index-change">Awaiting market data</small></article>
+      <article class="metric"><div><span>Eligible constituents</span></div><strong id="constituent-count">—</strong><small>Liquidity-screened public companies</small></article>
+      <article class="metric"><div><span>Group dispersion</span><button class="info" data-help="Population standard deviation of constituent returns over the selected period.">?</button></div><strong id="dispersion">—</strong><small>Cross-sectional standard deviation</small></article>
+      <article class="metric"><div><span>Largest outlier</span></div><strong id="largest-outlier">—</strong><small id="largest-outlier-note">Measured in standard deviations</small></article>
+    </section>
+
+    <section class="panel chart-panel" id="performance">
+      <header class="panel-header">
+        <div><p class="section-kicker">Relative performance</p><h2>Index, benchmarks & peers</h2><p>Every line starts at 100, so slope—not share price—shows who actually outperformed.</p></div>
+        <div class="range-control" role="group" aria-label="Performance period">
+          <button data-range="1D">1D</button><button data-range="1W">1W</button><button class="active" data-range="1M">1M</button><button data-range="3M">3M</button><button data-range="YTD">YTD</button><button data-range="1Y">1Y</button><button data-range="MAX">MAX</button>
+        </div>
+      </header>
+      <div class="chart-toolbar"><div id="chart-legend" class="legend"></div><span id="freshness" class="freshness">Loading live data…</span></div>
+      <div id="chart" class="chart" role="img" aria-label="Normalized eVTOL index and benchmark performance chart"><div class="loading"><i></i> Building comparison…</div></div>
+      <div class="chart-foot"><span>100 = selected-period starting value</span><span>Adjusted closes · USD-normalized</span><span>Simulated history before {{ launch_date }}</span></div>
+    </section>
+
+    <section class="two-column" id="outliers">
+      <article class="panel outlier-panel">
+        <header class="panel-header compact"><div><p class="section-kicker">Signal, not a verdict</p><h2>Outlier radar</h2><p>A z-score tells you how many standard deviations a stock’s return sits above or below the group average.</p></div></header>
+        <div class="sigma-scale"><span>−2σ unusual laggard</span><i></i><span>0σ group mean</span><i></i><span>+2σ unusual leader</span></div>
+        <div id="outlier-list" class="outlier-list"><div class="loading"><i></i> Calculating dispersion…</div></div>
+      </article>
+      <article class="panel explain-panel">
+        <p class="section-kicker">Read it correctly</p><h2>What “outlier” means</h2>
+        <div class="explain-step"><span>01</span><div><strong>Choose a period</strong><p>We calculate each active stock’s adjusted return over the same window.</p></div></div>
+        <div class="explain-step"><span>02</span><div><strong>Measure the group</strong><p>The mean and population standard deviation describe the peer distribution.</p></div></div>
+        <div class="explain-step"><span>03</span><div><strong>Standardize the gap</strong><p>Return minus mean, divided by standard deviation, gives the z-score.</p></div></div>
+        <div class="formula">z = (company return − group mean) ÷ group standard deviation</div>
+        <p class="caution">A large z-score identifies unusual relative movement. It does not explain why it happened and is not a buy or sell signal.</p>
+      </article>
+    </section>
+
+    <section class="panel" id="constituents">
+      <header class="panel-header"><div><p class="section-kicker">Investable basket</p><h2>Constituent scoreboard</h2><p>Weights balance economic size with a 25% concentration cap. Thinly traded names remain visible but outside the index.</p></div><div class="table-key"><span><i class="dot eligible"></i>Eligible</span><span><i class="dot tracked"></i>Tracked only</span></div></header>
+      <div class="table-scroll"><table><thead><tr><th>Company</th><th>Price</th><th>Period</th><th>vs. group</th><th>Volatility</th><th>Index weight</th><th>Status</th></tr></thead><tbody id="constituent-table"><tr><td colspan="7"><div class="loading"><i></i> Loading constituents…</div></td></tr></tbody></table></div>
+    </section>
+
+    <section id="universe" class="universe-section">
+      <header class="section-header"><div><p class="section-kicker">Canonical Shmape database</p><h2>Every tracked public eVTOL company</h2><p>This API-backed directory is the source other Shmape products use for company names, tickers, career pages, and classification.</p></div><a class="api-link" href="{{ base_path }}/api/v1/companies">Open company API ↗</a></header>
+      <div id="company-grid" class="company-grid"><div class="loading"><i></i> Loading the universe…</div></div>
+    </section>
+
+    <section class="methodology" id="methodology">
+      <header class="section-header"><div><p class="section-kicker">No black box</p><h2>How the index works</h2><p>Rules are public, calculations are reproducible, and unavailable data is disclosed rather than guessed.</p></div><a class="api-link" href="{{ base_path }}/api/v1/methodology">Methodology JSON ↗</a></header>
+      <div class="method-grid">
+        <article><span>01 / Universe</span><h3>Material eVTOL exposure</h3><p>Public passenger, cargo, and enabling-platform businesses qualify only when eVTOL is material—not a side project inside a conglomerate.</p></article>
+        <article><span>02 / Eligibility</span><h3>Size & liquidity screen</h3><p>Minimum $50M float-adjusted market cap, $250K median daily value, $1 price, and 20 trading days. Failing names stay in the database but not the basket.</p></article>
+        <article><span>03 / Weighting</span><h3>Free-float market cap</h3><p>Eligible companies are weighted by float-adjusted market value, then iteratively capped at 25% so one company cannot define the category.</p></article>
+        <article><span>04 / Reviews</span><h3>Quarterly, point in time</h3><p>Reviews use data available on the first trading day of each quarter. New listings wait for trading history; delisted companies remain in historical backtests.</p></article>
+        <article><span>05 / Prices</span><h3>Adjusted and normalized</h3><p>Daily adjusted closes account for splits and distributions. Foreign primary listings convert to USD; chart series rebase to 100 for fair comparison.</p></article>
+        <article><span>06 / Outliers</span><h3>Standard deviations</h3><p>Cross-sectional z-scores reveal unusual leaders and laggards. Rolling annualized volatility shows each stock’s own risk, separately from peer dispersion.</p></article>
+      </div>
+      <div class="disclosure"><strong>Important disclosure</strong><p>SHM-EVTOL is an independent research index, not an exchange-listed product. Pre-launch levels are a simulated backtest and may use incomplete public data. Version 1 currently uses a disclosed 1.0 free-float placeholder where verified point-in-time float exclusions are unavailable; those factors will change only with dated filing evidence. Market information may be delayed or revised. This site is informational only and is not financial advice.</p></div>
+    </section>
+  </main>
+
+  <footer><div><strong>Shmape eVTOL Index</strong><p>Evidence over hype. Transparent by design.</p></div><div><a href="/Shmape-Homepage/">Shmape Operating System</a><a href="{{ base_path }}/api/v1/health">Data health</a><a href="{{ base_path }}/api/v1/companies">Universe API</a></div></footer>
+  <div id="tooltip" class="tooltip" role="tooltip"></div>
+</body>
+</html>

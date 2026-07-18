@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: evtol-index-web
+  namespace: shmape
+spec:
+  selector:
+    app: evtol-index-web
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http

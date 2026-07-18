@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: evtol-index
+  namespace: shmape
+spec:
+  ingressClassName: public
+  rules:
+    - host: cloud.tomgiro.com
+      http:
+        paths:
+          - path: /Shmape-Homepage/evtol-index
+            pathType: Prefix
+            backend:
+              service:
+                name: evtol-index-web
+                port:
+                  number: 8000
+  tls:
+    - hosts: [cloud.tomgiro.com]
+      secretName: cloud-tomgiro-com-tls

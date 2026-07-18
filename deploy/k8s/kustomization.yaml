@@ -1,0 +1,9 @@
+resources:
+  - configmap.yaml
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - cronjob-refresh.yaml
+  - cronjob-discovery.yaml
+  - ingress.yaml
+  - networkpolicy.yaml
