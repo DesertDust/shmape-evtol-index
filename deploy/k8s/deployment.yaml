@@ -27,6 +27,7 @@ spec:
             allowPrivilegeEscalation: false
             capabilities:
               drop: ["ALL"]
+              add: ["CHOWN"]
           volumeMounts:
             - name: data
               mountPath: /var/lib/evtol-index
